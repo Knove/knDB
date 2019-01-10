@@ -11,10 +11,14 @@ Data Storage for Lightweight Node.js Applications
 
 English | [简体中文](./README.CN.md)
 
+At present, it is not so much a database as a lightweight data storage. 
+
+If your application does not need to store a large amount of data, then you can consider Kn-DB! Get rid of the shackles of large third-party databases!
+
 ## Why use Kn-DB?
 
-- If you need data persistence storage, you don't need to install MySQL/MongoDB anymore.
-- Users are no longer required to install other third-party databases when promoting your products.
+- Easy to import, very suitable for storing Non-large data! You can save any information you want to save!
+- When promoting your Node.js application, you can avoid users having to install third-party databases (such as mySQL, mongoDB, etc.) to achieve data storage, which is more suitable for promotion.
 
 ## Installation
 
