@@ -10,6 +10,7 @@
     "build:w": "rollup -c --watch"
   },
   "author": "Knove(https://github.com/KnoveZ)",
+  "homepage": "https://github.com/KnoveZ/knDB",
   "license": "MIT",
   "dependencies": {
     "immer": "^1.10.0",

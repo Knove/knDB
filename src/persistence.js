@@ -43,7 +43,7 @@ export default class Persistence {
 
       const action = shell.ls(tablePosi);
       if (action.stderr) {
-        console.warn(`get ${table} faild! memory not found ${table}, but table is record in db.`);
+        console.warn(`get ${table} faild! table data not found ${table}, but table is record in db.`);
         return {};
       }
 
