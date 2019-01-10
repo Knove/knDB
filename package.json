@@ -1,0 +1,38 @@
+{
+  "name": "kndb",
+  "version": "0.0.1",
+  "description": "",
+  "main": "dist/index.js",
+  "scripts": {
+    "start": "node src/index.js",
+    "test": "node __test__/index.js",
+    "build": "rollup -c",
+    "build:w": "rollup -c --watch"
+  },
+  "author": "Knove(https://github.com/KnoveZ)",
+  "license": "MIT",
+  "dependencies": {
+    "immer": "^1.10.0",
+    "shelljs": "^0.8.3",
+    "uuid": "^3.3.2"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.2.2",
+    "@babel/plugin-proposal-class-properties": "^7.2.3",
+    "@babel/preset-env": "^7.2.3",
+    "babel-eslint": "^9.0.0",
+    "eslint": "^5.4.0",
+    "eslint-config-airbnb": "^13.0.0",
+    "eslint-plugin-import": "^2.2.0",
+    "eslint-plugin-jsx-a11y": "^2.2.3",
+    "eslint-plugin-react": "^6.8.0",
+    "rollup": "^1.0.1",
+    "rollup-plugin-alias": "^1.5.1",
+    "rollup-plugin-babel": "^4.2.0",
+    "rollup-plugin-node-resolve": "^4.0.0",
+    "rollup-plugin-uglify": "^6.0.0"
+  },
+  "files": [
+    "dist"
+  ]
+}

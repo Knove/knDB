@@ -1,34 +1,32 @@
 <h1 align="center">Kn-DB</h1>
 <div align="center">
 
- Data persistence, Based on [Node.js](https://nodejs.org)
-
-Data Storage for Lightweight Node.js Applications
+ 基于 [Node.js](https://nodejs.org)的数据持久化方案，适合轻量级Node.js应用
 
 [![npm package](https://img.shields.io/npm/v/kndb.svg?style=flat-square)](https://www.npmjs.org/package/kndb)
 
 </div>
 
-English | [简体中文](./README.CN.md)
+[English](./README.md) | 简体中文
 
-## Why use Kn-DB?
+## 为什么我要用它?
 
-- If you need data persistence storage, you don't need to install MySQL/MongoDB anymore.
-- Users are no longer required to install other third-party databases when promoting your products.
+- Node.js导入方便，非常适合存储非大型数据！可以保存你想保存的任何信息！
+- 在推广你的Node.js应用时候可以避免用户必须安装第三方数据库（例如 mySQL, mongoDB 等）才能实现数据存储，更适合推广。
 
-## Installation
+## 安装
 
 ```sh
-// with npm
+// 使用npm
 npm install kndb
 
-// with yarn
+// 或使用yarn
 yarn add kndb
 ```
 
-## Usage
+## 使用
 
-Here is a quick example to get you started:
+使用非常简洁方便，一切都是同步运行：
 
 ```javascript
 const knDB = require('kndb');
@@ -47,11 +45,9 @@ if (db.success) {
 
 ## knDB API
 ### · getDB(db_name, [option])
-Available options:
-- type: getDB type, when type = check, if db is undefind, kndb will thorw error, default is create db
-   
-   s
-- position: db saved position, default is your project root position
+配置项:
+- type: 定义获取数据库实例时的获取方式，可不填，则没有找到数据库的情况下，会新建一个空数据库。但当type为check时，则会抛出错误。
+- position: 数据库存储的位置，默认为你的Node.js程序根目录。也可指定为任意目录。
 ```javascript
 const options = {
     type: 'check',
