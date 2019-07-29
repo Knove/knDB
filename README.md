@@ -54,7 +54,6 @@ if (db.success) {
 Available options:
 - type: getDB type, when type = check, if db is undefind, kndb will thorw error, default is create db
    
-   s
 - position: db saved position, default is your project root position
 ```javascript
 const options = {
