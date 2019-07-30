@@ -38,9 +38,9 @@ const knDB = require('kndb');
 const db = knDB.getDB('hello');
 
 if (db.success) {
-  db.get('knove');       // { a: 0, b: 6 }
-  db.set('knove', { a: 7 });
-  db.get('knove');       // { a: 7, b: 5 }
+  db.get('knove');       // { a: 0, b: 7 }
+  db.set('knove', { a: 2 });
+  db.get('knove');       // { a: 2, b: 7 }
 } else {
   console.error(db.errorInfo);
 }
