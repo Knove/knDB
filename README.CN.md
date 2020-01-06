@@ -38,20 +38,54 @@ const knDB = require('kndb');
 const db = knDB.getDB('hello');
 
 if (db.success) {
-  db.get('knove');       // { a: 0, b: 7 }
-  db.set('knove', { a: 2 });
-  db.get('knove');       // { a: 2, b: 7 }
+  db.get('knove');       // {}
+  db.set('knove', { value: 7 });
+  db.get('knove');       // { value: 7 }
 } else {
   console.error(db.errorInfo);
 }
+```
+嵌套数据使用也很方便：
 
+```javascript
+// 现在这里object的初值是 { innerValue: 2 }
+const { object } = db.get('knove'); 
+
+object.innerValue = 7;
+db.set('knove', { object });
+
+db.get('knove').object.innerValue; // 7
+```
+不推荐层级太多，推荐数据扁平。一个比较复杂的例子：
+```javascript
+db.set('knove', { 
+  value1: 0,
+  value2: 0
+}); 
+
+db.set('knove', { value1: 1 }); 
+
+db.get('knove') // { value1: 1, value2: 0 }
+```
+即在处理第一级的数据时，set 时不用管同级的其他元素。例子这里没有传入 value2，value2 的值不会变化。
+
+但是如果 第一级元素是一个 object，则 object 中全部元素都会被覆盖：
+```javascript
+db.set('knove', { 
+  object: { num1: 0, num2: 0 },
+}); 
+
+db.set('knove', { object: { num1: 2 } }); 
+
+db.get('knove') // { object: { num1: 2 } }
 ```
 
-## knDB API
+## KnDB API
 ### · getDB(db_name, [option])
-配置项:
-- type: 定义获取数据库实例时的获取方式，可不填，则没有找到数据库的情况下，会新建一个空数据库。但当type为check时，则会抛出错误。
-- position: 数据库存储的位置，默认为你的Node.js程序根目录。也可指定为任意目录。
+#### db_name：库名
+#### option配置项:
+- type: 可不填，定义获取数据库实例时的获取方式，在没有找到数据库的情况下，会新建一个空数据库。但当type为check时，则会抛出错误。
+- position: 可不填，数据库存储的位置，默认为当前Node.js程序根目录。
 ```javascript
 const options = {
     type: 'check',
@@ -59,13 +93,16 @@ const options = {
 }
 const db = knDB.getDB('hello', options);
 ```
-## db API
+## DB API
 ### · get(table_name)
+#### table_name： 表名
 ```javascript
 const tableData = db.get('knove'); 
 ```
 
 ### · set(table_name, setData)
+#### table_name： 表名
+#### setData 传表中某个字段的数据
 ```javascript
 const setAction = db.set('knove', { a: 7 });
 if (setAction.errorInfo) {

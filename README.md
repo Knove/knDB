@@ -40,15 +40,44 @@ const knDB = require('kndb');
 const db = knDB.getDB('hello');
 
 if (db.success) {
-  db.get('knove');       // { a: 0, b: 7 }
-  db.set('knove', { a: 2 });
-  db.get('knove');       // { a: 2, b: 7 }
+  db.get('knove');       // {}
+  db.set('knove', { value: 7 });
+  db.get('knove');       // { value: 7 }
 } else {
   console.error(db.errorInfo);
 }
-
 ```
+Nested data：
+```javascript
+// now object is { innerValue: 2 }
+const { object } = db.get('knove'); 
 
+object.innerValue = 7;
+db.set('knove', { object });
+
+db.get('knove').object.innerValue; // 7
+```
+Too many levels are not recommended, this is a example of flat levels:
+```javascript
+db.set('knove', { 
+  value1: 0,
+  value2: 0
+}); 
+
+db.set('knove', { value1: 1 }); 
+
+db.get('knove') // { value1: 1, value2: 0 }
+```
+Contrast：
+```javascript
+db.set('knove', { 
+  object: { num1: 0, num2: 0 },
+}); 
+
+db.set('knove', { object: { num1: 2 } }); 
+
+db.get('knove') // { object: { num1: 2 } }
+```
 ## knDB API
 ### · getDB(db_name, [option])
 Available options:
