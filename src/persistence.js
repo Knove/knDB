@@ -9,13 +9,9 @@ const shell = require('shelljs');
 export default class Persistence {
   constructor(config, dataBase) {
     this.dataBase = dataBase;
-
     this.config = config;
-
     this.success = config.success;
-
     this.errorInfo = config.errorInfo;
-
     this.tableDataMemory = {};
   }
 
